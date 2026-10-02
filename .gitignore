@@ -1,0 +1,26 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Editor / OS clutter
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Knowledge Librarian runtime data
+00_INBOX/
+01_LIBRARY/
+02_NEEDS_REVIEW/
+03_DUPLICATES/
+04_QUARANTINE/
+
+catalog/database/
+catalog/metadata/
+catalog/logs/
+
+# Local AI / model files
+*.gguf
