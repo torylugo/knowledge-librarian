@@ -24,3 +24,13 @@ catalog/logs/
 
 # Local AI / model files
 *.gguf
+
+# Local database files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Python-generated files
+__pycache__/
+*.pyc
