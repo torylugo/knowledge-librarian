@@ -29,6 +29,24 @@ for item in INBOX.iterdir():
 
     if item.is_file():
         file_hash = calculate_hash(item)
+        matching_files = connection.execute(
+            """
+            SELECT file_path
+            FROM file_locations
+            WHERE sha256 = ? AND file_path != ?
+            """,
+            (file_hash, str(item))
+        ).fetchall()
+        if matching_files:
+            print("DATABASE DUPLICATE MATCHES:")
+
+            for match in matching_files:
+                recorded_path = Path(match[0])
+
+                if recorded_path.is_file():
+                    print(f"  EXISTS: {recorded_path}")
+                else:
+                    print(f"  MISSING: {recorded_path}")
         previous = connection.execute(
             "SELECT sha256 FROM file_locations WHERE file_path = ?",
             (str(item),)
