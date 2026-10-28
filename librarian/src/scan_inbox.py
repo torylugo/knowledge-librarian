@@ -15,17 +15,18 @@ def calculate_hash(file_path):
 
     return sha256.hexdigest()
 
-
-known_hashes = {}
-
-connection = sqlite3.connect(DATABASE)
-for item in INBOX.iterdir():
+def print_file_information(item):
     print(f"Path: {item}")
     print(f"Name: {item.name}")
     print(f"Extension: {item.suffix}")
     print(f"Is file: {item.is_file()}")
     print(f"Size: {item.stat().st_size} bytes")
- 
+
+known_hashes = {}
+
+connection = sqlite3.connect(DATABASE)
+for item in INBOX.iterdir():
+    print_file_information(item)
 
     if item.is_file():
         file_hash = calculate_hash(item)
